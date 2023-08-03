@@ -1,0 +1,27 @@
+parameters:
+- name: pipelineId
+  type: string
+
+- name: publishStepName
+  type: string
+
+- name: publishStepDisplayName
+  type: string
+
+steps:
+ - pwsh: |
+      try {
+        $buildDetails =  '$(buildSummary)' | ConvertFrom-Json -Depth 10
+        $buildInfo = $buildDetails | ? { $_.pipelineId -eq "${{ parameters.pipelineId }}" } 
+        if ($buildInfo) {
+          $result = $buildInfo.result
+          echo "##vso[task.setvariable variable=PipelineStatus;isoutput=true]$result"
+          echo  "PipelineStatus: $result"
+        }
+      }
+      catch {
+       throw $_
+      }
+   name: ${{ coalesce(parameters.publishStepName, 'SetPipelineStatus') }}
+   displayName: ${{ coalesce(parameters.publishStepDisplayName, 'Set Pipeline Status') }}
+   failOnStderr: true
