@@ -11,7 +11,7 @@ The PipelineStatus pipeline requires the following parameters to be defined:
 | pipelineId | String | | | Required | This enables passing of Pipeline ID as a variable |
 | resultFilter | String | succeeded | | Required | |
 | buildNumber | String | | | Optional | |
-| outputVariablePrefix | String | 'PublishAndDeployClaims' | | Required | |
+| outputVariablePrefix | String |  | | Required | |
 | pipelineDisplayName | String | | | Required | This enables to use different display name for the pipeline |
 | executeCondition | Boolean | true | | Required | |
 | publishStepName | String | | | Required | This enables to use step name for the publishPipelineStatus.yml template |
