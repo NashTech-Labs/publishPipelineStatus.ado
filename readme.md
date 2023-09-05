@@ -43,10 +43,9 @@ You can use the "output variable" of this template as per the requirement. for e
     - template: templates/publishPipelineStatus.yml@Template
         parameters:
         BuildSummary: $buildSummary
-        pipelineId: $(pipeline.publishAndDeployClaimsPipelineId)
-        publishStepName: SetPublishAndDeployPartyPipelineStatus
-        publishStepDisplayName: 'Set Publish And Deploy Party Pipeline Status'
-
+        pipelineId: ${{ parameters.pipelineId }}
+        publishStepName: S${{ parameters.publishStepName }}
+        publishStepDisplayName: ${{ parameters.publishStepDisplayName }}
 
 ```
 
